@@ -1,0 +1,11 @@
+etc/
+.DS_Store
+dist/
+docs/.observablehq/cache/
+node_modules/
+yarn-error.log
+notebooks/experiments.py
+notebooks/assets/png/
+Project.toml
+Manifest.toml
+*.mp4
