@@ -9,7 +9,7 @@ def initialize():
     g = nx.karate_club_graph()
     g.pos = nx.spring_layout(g)
     for i in g.nodes:
-        g.nodes[i]['state'] = 1 if random() < .7 else 0
+        g.nodes[i]['state'] = 1 if random() < .5 else 0
     nextg = g.copy()
     nextg.pos = g.pos
     
@@ -27,8 +27,8 @@ Dt = 0.01 # Delta t
 def update():
     global g, nextg
     for i in g.nodes:
-        ci = g.nodes[i]['state'] + 1 if random() < .7 else 0
-        nextg.node[i]['state'] = ci + alpha * (
+        ci = g.nodes[i]['state'] 
+        nextg.nodes[i]['state'] = ci + alpha * (
             sum(1 if g.nodes[j]['state'] > 0 else 0 for j in g.neighbors(i) )  # Sum positive neighbors' states
             - 1 * g.degree(i)
 ) * Dt

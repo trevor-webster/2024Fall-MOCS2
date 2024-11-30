@@ -1,0 +1,62 @@
+(0, 0, 1)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            124         0              0
+Adaptive                0         0              0
+Shortest Path           0         0            -94
+(0, 0.3333333333333333, 0.6666666666666666)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            111         0              0
+Adaptive                0       -18            -24
+Shortest Path           0       -19            -21
+(0, 0.6666666666666666, 0.3333333333333333)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            125         0              0
+Adaptive                0       -32            -17
+Shortest Path           0       -23            -10
+(0, 1, 0)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            129         0              0
+Adaptive                0       -82              0
+Shortest Path           0         0              0
+(0.3333333333333333, 0, 0.6666666666666666)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            111         0            -22
+Adaptive                0         0              0
+Shortest Path         -26         0            -27
+(0.3333333333333333, 0.3333333333333333, 0.3333333333333333)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            109       -14             -5
+Adaptive               -9        -8             -6
+Shortest Path         -13        -4             -3
+(0.3333333333333333, 0.6666666666666666, 0)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato            108       -11              0
+Adaptive              -14       -36              0
+Shortest Path           0         0              0
+(0.6666666666666666, 0, 0.3333333333333333)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato             78         0            -26
+Adaptive                0         0              0
+Shortest Path         -14         0            -15
+(0.6666666666666666, 0.3333333333333333, 0)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato             84       -12              0
+Adaptive              -24        -8              0
+Shortest Path           0         0              0
+(1, 0, 0)
+Payoff Matrix (Received - Rejected):
+               Hot Potato  Adaptive  Shortest Path
+Hot Potato             35         0              0
+Adaptive                0         0              0
+Shortest Path           0         0              0
+Payoff Matrix (Received - Rejected):
+4.188888888888889
