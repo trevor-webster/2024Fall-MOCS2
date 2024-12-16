@@ -1,8 +1,6 @@
 # Finals project
 
-The purpose of the project is to study the property of [robustness][1] as defined by networksciencebook of a data network that sends packets between nodes of capacity limited by resource constraints. In [Data Networks][5], we push the discussion into the next sections
-
-in this project, we have adapted the discussion from links to node
+The purpose of the project is to study the property of [robustness][1] as defined by networksciencebook of a data network that sends packets between nodes of capacity limited by resource constraints. It is an area of research in [Data Networks][5], because we are interested in finding how to design a network that does well with respect to failures.
 
 ## Robustness 
 
@@ -20,16 +18,20 @@ $f_c = 1 - \frac{1}{\frac{k^2}{k}-1}$ (8.7) where nodes are randomly removed fro
 - failure propagates to neighbor nodes
 
 
-Because such failurs can be quantified by delay $D$ in a congestion problem that has been already studied in [Data Networks][5], we push the discussion into the next section
+Because such failures can be quantified by delay $D$ in a congestion problem that has been already studied in [Data Networks][5], we pushed its study into the next two problems, that use $D$
 
-Cascading failures are studied the following problems
+Cascading failures also looked at node failures.
+
 
 ### Delay $D$ 
-
+The next two problems are measured using delay $D$
 
 The delay $D$ is a function of both capacity and flow on a node, it can be expressed as
 
-$D = 1/{\gamma}\sum_{i} \frac{F_i}{C_i - F_i} \le T$(5.40)
+$D = 1/{\gamma}\sum_{i} \frac{F_i}{C_i} \le T$     (5.40)
+
+
+(where $F_i$ is flow measured in data units per unit time $\gamma$ is the total arrival rate into the network)
 
 Delay $D$ is used as one measure of cascading failure because of these justifications 
 
@@ -40,14 +42,6 @@ corresponding link capacity $C$ .
 
 > When the offered load is excessive, a portion will be rejected by the flow control algorithm 
 
-Because a rejected packet is retransmitted, it explains one mechanism that justifies why $D$ increases when failure happens,
-
-According to (6.1) fitness is not assigned by any individual, but reflects the network’s collective perception of a node’s importance relative to the other nodes. We can, therefore, determine a node’s fitness by comparing its time evolution to the time evolution of other nodes in the network. 
-- flow
-- breakdown rule
-- failure propagation quantified as $D$ and $S$ the size of the node failure
-
-(where $F_i$ is flow measured in data units per unit time $\gamma$ is the total arrival rate into the network)
 
 Delay is relevant to the robustness  When a network is congested, possibly due to sub-optimal assignment of capacity, packets fail at nodes where $F_i$ approaches $C_i$ and $D$ is high. Therefore this project finds failures that are from congestion and measurable by delay to be a distinct category of failures from the random failures measuruable by robustness $p_c$.
 
@@ -58,7 +52,7 @@ Delay is relevant to the robustness  When a network is congested, possibly due t
 
 Resilience is evaluated by how well the network adapts to congestion.  Network congestion can begin to be quantified as flow $F_i$ expressed in data units/sec at node $i$. A cost function used in optimization includes capacity $C_i$ is
 
-$ D_{ij}(F_{ij})=\frac{F_i}{C_i - F_i} $ ([Data Networks](https://web.mit.edu/dimitrib/www/Routing_Data_Nets.pdf) (5.30)
+$ D_{i}(F_{i})=\frac{F_i}{C_i - F_i} $ [Data Networks][5] (5.30)
 
 where delay $D_{ij}$ expresses qualitatively that congestion sets in when a flow $F_i$ approaches the corresponding capacity $C_i$ (434)
 
@@ -74,11 +68,7 @@ We will find which of network routing models are more adaptive in the sense of (
 
 As cascading failures follow a breakdown rule that is governed by capacity, the network topology  capacity can influence whether flow becomes failure then 
 
-We solve the problem of capacity assignment as defined in 5.34 of [Data Networks](https://web.mit.edu/dimitrib/www/Routing_Data_Nets.pdf) to choose the capacity of each node $i$ so as to minimize the linear cost 
-
-$\sum_{ij} p_{ij} C_{ij}$ 
-
-that for the current study has been adapted for nodes ${i}$ as
+We solve the problem of capacity assignment as defined in 5.34 of [Data Networks](https://web.mit.edu/dimitrib/www/Routing_Data_Nets.pdf) to choose the capacity of each node $i$ so as to minimize the linear cost as
 
 $\sum_{i} p_{i} C_{i}$ where $p_i$ is a price per unit capacity, and e 
 
@@ -89,13 +79,26 @@ $D = 1/{\gamma}\sum_{i} \frac{F_i}{C_i - F_i} \le T$(5.35)
 
 The authors suggest that the optimal solution is a minimal connectivity topology that eliminates all links except those which have just enough capacity (442), and we will demonstrate if this holds.
 
-
-
 by finding optimal topologies that minimize cost of within reliability and delay constraints. 
+
+
+## Methods
+### Robustness
+Robustness was evaluated for network topologies for the two parameters from Evolving networks 
+- [internal links][7] after each new node $n$ internal links are added to randomly selected nodes
+- [Aging][9] parameter $\nu$ that governs dependence of attachment proabability on node's age
+
+These were chosen because they can be easily modeled and are two mechanisms explain how real world data networks that build upon the Barabási-Albert model to take their form. $n$ and $\nu$ took a sweep of negative and positive values. For each topology in the sweep, nodes were randomly removed until nil, and a plot of the LCC with respect to $f_c$ was done. The critical fraction $f_c$ was found by application of (8.7)
+
+### Cascading failures
+
+A data network is simulated by one of two routing algorithms discussed next. Packets are generated at random with a uniform probability $p = 0.5$ at an origin randomly selected node to a random destination node. 
+
+To simulate failure, a packet fails at a node when the node's capacity is exceeded, and is rejected. The packet is then retransmitted by the last node prior to failure. Failures were tracked by the node of occurrence.
 
 ### Heuristic methods for capacity assignment
 
-These methods perturb a network topology by changing capacities of nodes, searching around a current topology to be evaluated with respect to. (442)
+These methods perturb a network topology by changing capacities of nodes, searching around a current topology to be evaluated with respect to. Research has shown a closed form combinatorial approach to be difficult (442)
 
 We borrow and restate these methods. At the start of each iteration, there is available a current best topology and a trial topology.
 1. Assign flows. Flows are found from statistics. We used the average flow per node
@@ -103,18 +106,6 @@ We borrow and restate these methods. At the start of each iteration, there is av
 3. Check reliability. We use the robustness measure $f_c$
 4. Check cost improvement
 5. Use some heuristic to change one or more capacities of the current best topology, thereby obtaining a trial topology that has not been considered before.
-
-## Methods
-
-
-Failure is simulated where a packet fails at a node when the node's capacity is exceeded. The packet is then retried on an end-to-end basis, recycled back into the network. The failure may propagate to other nodes. Cascading failure is to be studied if it emerges
-
-Parameters to vary topologies are from Evolving networks 
-- [internal links][7] by random attachment according to the Evolving Networks of networksciencebook
-- [Aging][9] parameter $\nu$ that governs dependence of attachment proabability on node's age
-
-### Capacity assignment problem
-
 
 
 ## Results
@@ -125,11 +116,20 @@ Robustness for internal links added by random attachment parameter $n$ showed a 
 
 Robustness for aging showed a negative power law relationship to aging parameter $nu$. Plotting on a semilog plot, shows a straight line, suggesting decay.
 
-cascadin failures, 
-nodes are colored by number failures
+### Cascading failures
 
-then we declare constraints and find lowest cost
-- internal link
+There wasn't strong evidence of cascading failures in the network.  Failures remained local to nodes of high degree.  
+
+### Capacity assignment problem and resilience
+
+$D$ was equal for all heuristics, only changing with respect to cost $\sum C$. 
+
+$D$ was equal between hot potato and shortest path. Hot potato showed less failures than shortest path. It was hypothesized that $D$ should increase in the presence of failures, as packets are recycled back into the network, taking longer to reach the destination. 
+
+Formula 5.30, resulted in the same $D$ in the two problems. Although it uses flow statistics as input, it is an average over the total flow of the network, that can explain this result.
+
+
+
 
 
 ## Footnotes
